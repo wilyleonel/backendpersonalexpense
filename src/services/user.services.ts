@@ -47,7 +47,6 @@ export class userService {
             }
             return null
         } catch (error) {
-            console.log(error)
             throw error
         }
     }

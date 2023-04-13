@@ -11,6 +11,7 @@ model User {
     id       Int        @id @default(autoincrement())
     email    String     @unique
     password String
+    role     Role       @default(USER)
     profile  Profile?
     expenses Expenses[]
 }
@@ -36,9 +37,14 @@ model Expenses {
 }
 
 model Logs {
-  id               Int      @id @default(autoincrement())
-  errorDescription String?
-  message          String?
-  errorContent     String?
-  createdAt        DateTime @default(now())
+    id               Int      @id @default(autoincrement())
+    errorDescription String?
+    message          String?
+    errorContent     String?
+    createdAt        DateTime @default(now())
+}
+
+enum Role {
+    USER
+    ADMIN
 }
