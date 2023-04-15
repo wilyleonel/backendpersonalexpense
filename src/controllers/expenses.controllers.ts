@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import expenseServices from "../services/expense.services";
-
+import { UserInfo } from "../utils/format.server"
 
 export const showExpensesUser = async (
     req: Request,
@@ -11,7 +11,7 @@ export const showExpensesUser = async (
         const { id } = req.params;
         const convertId = parseInt(id);
         if (typeof convertId === "number" && convertId >= 0) {
-            const result = await expenseServices.get(convertId);
+            const result = await expenseServices.getAll(convertId);
             if (result) {
                 res.status(200).json(result);
             } else {
@@ -48,8 +48,20 @@ export const createExpenses = async (
 ) => {
     try {
         const { body } = req;
-        const result = await expenseServices.create(body)
-        res.status(201).json(result)
+        const { id } = req.params;
+        const userId = parseInt(id);
+        if (typeof userId === "number" && userId >= 0) {
+            const result = await expenseServices.create(body, userId)
+            res.status(201).json(result)
+        } else {
+            next({
+                errorDescription: userId,
+                status: 400,
+                message: "login before",
+                errorContent: "login before",
+            });
+        }
+
     } catch (error: any) {
         next({
             errorDescription: error,

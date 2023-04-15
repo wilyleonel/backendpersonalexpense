@@ -5,5 +5,5 @@ import { authenticate } from "../middlewares/auth.middlewares";
 export const expensesRoute=Router();
 
 expensesRoute.get("/expenses/:id",authenticate,showExpensesUser)
-expensesRoute.post("/expenses",authenticate,createExpenses)
+expensesRoute.post("/expenses/user/:id",authenticate,createExpenses)
 expensesRoute.delete("/expenses/:id",authenticate,deleteExpenses)

@@ -8,7 +8,7 @@ export class userService {
         try {
             const result = await prisma.user.findUnique({
                 where: { id },
-                include: { profile: true }
+                include: { expenses: true, profile: true, }
             })
             return result;
         } catch (error) {
@@ -22,7 +22,8 @@ export class userService {
         firstName,
         lastName,
         phone
-    }: userProfilePick) {
+    }: userProfilePick
+    ) {
         try {
             const verifyEmail = await prisma.user.findFirst({
                 where: { email }

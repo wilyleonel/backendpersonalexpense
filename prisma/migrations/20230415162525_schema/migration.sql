@@ -1,6 +1,9 @@
 -- CreateEnum
 CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
 
+-- CreateEnum
+CREATE TYPE "Months" AS ENUM ('JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER');
+
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
@@ -25,11 +28,13 @@ CREATE TABLE "Profile" (
 -- CreateTable
 CREATE TABLE "Expenses" (
     "id" SERIAL NOT NULL,
-    "livingPlace" DOUBLE PRECISION NOT NULL,
-    "feeding" DOUBLE PRECISION NOT NULL,
-    "outfit" DOUBLE PRECISION NOT NULL,
-    "health" DOUBLE PRECISION NOT NULL,
-    "education" DOUBLE PRECISION NOT NULL,
+    "livingPlace" INTEGER NOT NULL,
+    "feeding" INTEGER NOT NULL,
+    "outfit" INTEGER NOT NULL,
+    "health" INTEGER NOT NULL,
+    "education" INTEGER NOT NULL,
+    "total" INTEGER NOT NULL,
+    "month" "Months" NOT NULL,
     "userId" INTEGER NOT NULL,
 
     CONSTRAINT "Expenses_pkey" PRIMARY KEY ("id")

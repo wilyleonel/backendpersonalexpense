@@ -1,4 +1,4 @@
-import { Prisma, Profile, User } from "@prisma/client";
+import { Expenses, Prisma, Profile, Role, User } from "@prisma/client";
 
 export type loginPick = Pick<User, "email" | "password">;
 
@@ -15,6 +15,26 @@ export type userProfilePick = Pick<
     | "lastName"
     | "phone"
 >
+
+export type expensesPick=Pick<
+Expenses,
+|"livingPlace"
+|"feeding"
+|"outfit"
+|"health"
+|"education"
+|"total"
+|"month"
+|"userId"
+>
+
+export type UserInfo ={
+    id:number;
+    email:string;
+    password?:string;
+    role:Role;
+    iat:number;
+}
 
 
 export type errorProp = {

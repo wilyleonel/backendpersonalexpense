@@ -26,14 +26,16 @@ model Profile {
 }
 
 model Expenses {
-    id          Int   @id @default(autoincrement())
-    livingPlace Float
-    feeding     Float
-    outfit      Float
-    health      Float
-    education   Float
+    id          Int    @id @default(autoincrement())
+    livingPlace Int
+    feeding     Int
+    outfit      Int
+    health      Int
+    education   Int
+    total       Int
+    month       Months
     userId      Int
-    user        User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+    user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Logs {
@@ -47,4 +49,19 @@ model Logs {
 enum Role {
     USER
     ADMIN
+}
+
+enum Months {
+    JANUARY
+    FEBRUARY
+    MARCH
+    APRIL
+    MAY
+    JUNE
+    JULY
+    AUGUST
+    SEPTEMBER
+    OCTOBER
+    NOVEMBER
+    DECEMBER
 }
